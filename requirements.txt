@@ -1,1 +1,4 @@
 fastapi[all]
+requests
+python-dotenv
+jinja2
