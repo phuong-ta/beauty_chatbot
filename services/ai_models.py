@@ -1,10 +1,12 @@
 import os
+from dotenv import load_dotenv
 
 from langchain_google_genai import GoogleGenerativeAIEmbeddings, GoogleGenerativeAI
 from langchain_openai import OpenAIEmbeddings, ChatOpenAI
 
 
 def openai_embedding():
+    load_dotenv()
     if not os.getenv("OPENAI_API_KEY"):
         os.environ["OPENAI_API_KEY"] = ""
 
@@ -15,6 +17,7 @@ def openai_embedding():
 
 
 def openai_llm():
+    load_dotenv()
     if not os.environ.get("OPENAI_API_KEY"):
         os.environ["OPENAI_API_KEY"] = ""
 
@@ -28,6 +31,7 @@ def openai_llm():
 
 
 def google_genai_embedding():
+    load_dotenv()
     if not os.getenv("GOOGLE_API_KEY"):
         os.environ["GOOGLE_API_KEY"] = ""
 
@@ -36,6 +40,9 @@ def google_genai_embedding():
 
 
 def google_genai_llm():
+    load_dotenv()
+    if not os.getenv("GOOGLE_API_KEY"):
+        os.environ["GOOGLE_API_KEY"] = ""
     llm = GoogleGenerativeAI(model="gemini-pro",
                              google_api_key=os.getenv("GOOGLE_API_KEY"),
                              temperature=0,
