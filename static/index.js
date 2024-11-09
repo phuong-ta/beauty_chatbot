@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Function to send message to sever, and get response sendMessageToServer
     async function sendMessageToServer(userMessage) {
         try {
-            const response = await fetch('https://beauty-chatbot.onrender.com/chat/', {
+            const response = await fetch('http://127.0.0.1:8000/chat/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -60,9 +60,7 @@ document.addEventListener("DOMContentLoaded", function () {
             const botResponse = await sendMessageToServer(userMessage);
             // call function to send message to sever, add response to appendBotMessage
 
-            //const botResponse = userMessage + " response"
-            appendBotMessage("response "+ botResponse["message"]);
-            console.log(botResponse);
+            appendBotMessage(botResponse);
 
         }, 1000);
     }

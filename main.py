@@ -1,11 +1,10 @@
-import os
-
-from dotenv import load_dotenv
 from fastapi import FastAPI, Request, status
+from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
-from fastapi.responses import HTMLResponse
 from pydantic import BaseModel
+
+from services.chatbot import chatbot
 
 app = FastAPI()
 app.mount("/static", StaticFiles(directory="static"), name="static")
@@ -25,7 +24,7 @@ class Message(BaseModel):
 
 
 @app.post("/chat", status_code=status.HTTP_201_CREATED)
-async def send_message(message: Message) -> Message:
-    return message
-#load_dotenv()
-#OPENAI_KEY = os.getenv('OPENAI_KEY')
+async def send_message(message: Message):
+    result = chatbot(message.message)
+    print(result)
+    return result
