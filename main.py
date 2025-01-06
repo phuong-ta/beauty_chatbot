@@ -26,5 +26,5 @@ class Message(BaseModel):
 @app.post("/chat", status_code=status.HTTP_201_CREATED)
 async def send_message(message: Message):
     result = chatbot(message.message)
-    print(result)
+    #print(result)
     return result
